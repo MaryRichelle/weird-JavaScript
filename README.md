@@ -97,7 +97,7 @@ console.log(prices);
 myFun()
 ```
 why its weird 😵?  
-one that sorts an array in place and sort method with out argument it treact elements as string and sort them in dictionary order (lexicographic ) (that's weird 🙄)
+one that sorts an array in place and sort method with out argument  reacts on elements of array  as string and sort them in dictionary order (lexicographic ) (that's weird 🙄)
 ***
 
 ```js
@@ -224,7 +224,7 @@ console.log(toGreet);
 
 a = [1, 2, 3]
 b = a // reference to a as array are pass by reference
-a = a + [4] // 1,2,34 both a and [4]converted to string and concate
+a = a + [4] // 1,2,34 both a and [4]converted to string and concat
 console.log(b) // [1, 2, 3] a was assign to b before it changes it values on a = a + [4]
 ```
 (that's weird 🙄)
@@ -265,3 +265,6 @@ let data = 5
 test(data);
 ```
 ***
+
+
+Javascript is not yet done...... continue... (that's weird 🙄)
