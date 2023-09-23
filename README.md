@@ -14,16 +14,113 @@ why its weird 😵
 ***
 
 ```js
+console.log(-4 + 3 + "8") // -1 + "8" === 18
+console.log("A" - 1); // NaN
+console.log(2 + "-2" + "2"); // 2-22
+console.log("Hello" - "World" + 78); NaN
+console.log("Hello"+ "78"); "Hello78"
+let a = 0;
+let b = false;
+console.log((a === b));// false ===> type coercion not allowed
+console.log((a == b)); //true ===>  
+//1 because of == type coercion happen   
+//2  boolean coerced to  number but when    
+//3 false coveted to number it become 0 and true converted to 1
+// but if 
+let c  = 41;
+console.log((c == b)); // false
+
+```
+
+***
+
+```js
+const array = [1, 2, 3];
+let result = 0;
+for (const value in array) {
+  // console.log(value) 0,1,2,
+result += +value; // 3 append operator add 1 to its previous index as its iterating over indexes but ```+value``` + didnt make any difference as + covert string to number
+}
+console.log(result)
+```
+
+***
+
+
+```js
+
+true; // true
+false; // false"
+!true; // false
+!false; // true
+
+true && true; // true ===> if test is true print the value of 2nd
+true && false; //  false ===> if test is true print the value of 2nd
+false && true; // false ===> if the test is false print the value of 1st one
+false && false; // false
+  
+true || true; //   true ===> if the first  test is true prints the value of first
+true || false; // true ===> if the first  test is true prints the value of first
+false || true; // true ===> if the first  test is false prints the value of 2nd one
+false || false; // false ===> if the first  test is false prints the value of 2nd one
+```
+
+***
+
+### Hoisting
+
+```js
+console.log(x); // undefined
+var x = 5;
+ ```
+
+- variable declaration and function declaration(with function keyword) are hoisted
+ in this snippet of code because of hoisting ```var x``` (variable declaration ) is taken at the top of the scope where its undefine because its value is not initialized yet and we initialize the value with initializer =
+
+```js
+// TODO with var let
+  console.log(a) // undefined ===> var a is hoisted in global scop
+  var a;
+  function foo(){
+  console.log(a) // undefined ===> looking in global scop where a is undefined 
+  }
+  foo()
+  a = 1
+  console.log(a) // 1
+```
+
+***
+
+### Implicit Type Conversion
+
+```js
 let a = "52";
 let b = 52
 a ==b // true 
 typeof (a==b); // boolean
 a === b // false
 // (that's weird 🙄)
+console.log(5 + "5"); // "55"  
+console.log(5 - "5"); // 0
 ```
-true because type coercion happens behind the walls javascript  tries to convert the type of one of the operand of == operator to match them  and _a_ "42" becomes 42
+
+true because type coercion happens behind the walls javascript  tries to convert the type of one of the operand of == operator to match them  and *a* "42" becomes 42
 
 with === the coercion is not allowed  
+***
+
+```js
+const props = [
+{ id: 1, name: "John"},
+{ id: 2, name: "Jack"},
+{ id: 3, name: "Tom"}
+];
+const [, , { name }] = props;
+console.log(name);
+
+
+```
+
 ***
 
 ```js
@@ -120,7 +217,7 @@ arrayNumb.sort();
 console.log(arrayNumb);// [ 15, 16, 2, 23, 42, 8 ] 
 const prices = ["a", "b", "f", "e", "d","c"];
 prices.sort();
-console.log(prices);
+console.log(prices);// ["a","b","c","d","e","f"]
 }
 myFun()
 ```
@@ -136,7 +233,7 @@ console.log(Number('5'+x));//  output : 510 (that's weird 🙄)
 console.log(`The result ${y} and`+ false); // 'The result hello andfalse'
 ```
 
-why its weird 😵?   
+why its weird 😵?
   string concatenation because of + operator with typeof number and string accordingly  
 
 ***
@@ -179,8 +276,8 @@ console.log(1..toString() === "1");// true (that's weird 🙄)
 ```
 
 why its weird 😵?  
-1: floating point 1.0   
-2: .toString()   
+1: floating point 1.0
+2: .toString()
 first . is for floating point 1.0  
 ***
 
@@ -188,7 +285,7 @@ first . is for floating point 1.0
 const value = "123abc";
 const result = Number(value);
 
-console.log(typeof result); "number" 
+console.log(typeof result);// "number" 
 ```
 
 ***
@@ -203,7 +300,7 @@ console.log(obj1, obj2);// { a: 2 } { a: 0 }
 
 why its weird 😵?  
 obj2 have all the the value of it and add new obj1 so its { a: 0 }  
-later obj1 value of property a was changed but not in the obj2        
+later obj1 value of property a was changed but not in the obj2
 ***
 
 ***
@@ -236,12 +333,12 @@ why its weird 😵?
 
 let a=[]
 let b=""
-console.log(a==b) // true
+console.log(a==b) // true ==> with == loose equal array are coerced to string
 ```
 
 why its weird 😵?  
 loose equal  == converts  one or both values to same type and [] is converted to ""
-[] = "" // true
+[] == "" // true
 ***
 
 ```js
@@ -290,7 +387,7 @@ console.log("hi");
 "hello"  
 "hi"  
 "world"  
-why its weird 😵?    
+why its weird 😵?
 setTimeout is async function and it give space to other code to execute first even  it set to 0
 
 ***
@@ -307,7 +404,7 @@ let data = 5
 test(data);
 ```
 
-why its weird 😵?    
+why its weird 😵?
 
 ***
 
@@ -325,7 +422,7 @@ console.log("first")
 ```
 
 "first"  
-"second"   
+"second"
 set time out  is Asynchronous  
 ***
 
@@ -337,11 +434,72 @@ console.log(a)//56
 console.log(b)//67
 
 ```
+
 ***
+
 ```js
 
 let numbers = [1, 2, 3, 4, NaN];
 console.log(numbers.indexOf(NaN), typeof numbers[-1] );// -1 'undefined'
 ```
+
+***
+```js
+function someFun(){
+setTimeout(()=>{
+console.log(x); // 2 
+console.log(y); // 12
+},3000);
+var x = 2;
+let y = 12;
+}
+someFun()
+```
+because setTimeout as a async function it give space to rest of the code(as its going to wait for 3`) and entire function executes  from top to bottom lest say setTimeout is now before the closing } of someFun
+***
+```js
+(function(){
+setTimeout(()=> console.log(1),2000);
+console.log(2);
+setTimeout(()=> console.log(3),0);
+console.log(4);
+})();
+```
+output is  
+2  ===> executes immediately
+4  ===> executes immediately
+3  ===> runs after 0 seconds had to give place to rest of the code 
+1 ===> runs after 3 seconds
+***
+```js
+var x = 23;
+(function(){
+
+var x = 43;
+(function random(){
+// x is hoisted here but undefined
+x++; // undefined++ 
+console.log(x); // NaN 
+var x = 21; // x = 21
+})();
+
+
+})();
+
+
+```
+
+```js
+var set = new Set();
+set.add("+0").add("-0").add(NaN).add(undefined).add(NaN);
+console.log(set);
+```
+
+Set(4) {
+  '+0',
+  '-0',
+  NaN,
+  undefined
+  }
 
 Javascript is not yet done...... continue... (that's weird 🙄)
