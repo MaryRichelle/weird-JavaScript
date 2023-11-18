@@ -225,7 +225,7 @@ console.log(4 + (5 - - 4) - - 5)// 18 ==> () grouping have hight precedence â¬‡ï
 ```js
 console.log([10]+[10]); // "1010"
 console.log([10]+[10,10]); //'1010,10'
-console.log([1, 2] + [3, 4]);// 1,23,4 
+console.log([1, 2] + [3, 4]);// '1,23,4' 
 
 ```
 
