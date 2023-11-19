@@ -73,10 +73,6 @@ why its weird 😵
 ***
 
 ```js
-const o = Object.create(null)
-```
-
-```js
 b *2
 ```
 
@@ -105,7 +101,14 @@ The typeof operator returns "undefined" even for “undeclared” (or “not def
 ## Numbers / Floating Points
 
 ```js
-9999999999999999 // ===>10000000000000000
+typeof 42.0 // number ===> there is only 7  type of values in js number is one of them 
+```
+
+***
+
+```js
+console.log(013);    // Outputs: 11
+console.log(0o13);   // Outputs: 11
 ```
 
 ```js  
@@ -133,16 +136,12 @@ why its weird 😵?
 ***
 <!-- Todo -->
 ```js
-0.5+0.1 === true
-0.2+0.1 === true
 
+0.5+0.1 === 0.6 // true
+0.2+0.1 === 0.3 // false 
 ```
 
 ***
-
-```js
-typeof 42.0 // number ===> there is only 6 type of values in js number is one of them 
-```
 
 ***
 
@@ -179,13 +178,6 @@ console.log("5" * "5"); // 25
 console.log("5" / "5"); // 1
 console.log(5 + +"5") // 10
 console.log("5" - - "5"); // 10
-Math.min()// Infinity
-Math.max()// -Infinity
-true + true + true// 3 
-true - true // 0 
-//TODO 👇
-(!+[]+[]+![]) // 'truefalse' TODO
-(!+[]+[]+![]).length // 9
 ```
 
 ***
@@ -360,8 +352,6 @@ console.log(result)
 * boolean comparison
 
 ```js
-true == 1 // true ==> type coercion 
-true === 1 // false
 false + 1 === 1 // true with + operator false become 0 hence 0 + 1 
 true + 1 === 1 //false
 "42" == true // false  ==>  with == boolean converted to numbers (true = 1, false = 0) thus 
@@ -371,6 +361,27 @@ true + 1 === 1 //false
 ```
 
 > [!NOTE] `Never compare  boolean(true or false) any other type of value with  ==`
+
+* Objects/Array comparison
+
+```js
+// TODO
+[]*1 === 0// true * operator convert [] to primitive "" * 
+[1]===[]+1 // false because []+1 results in "1", but it's a string
+console.log({} + []); // "[object Object]"
+[] == ""
+({}) = "[object object]
+{} + [] === 0
+[] + {} === 0
+[5] + [6] === "56"
+{a:1} + {b:2} === "[object object][object object]"
+null + undefined === "nullundefined" // false
+
+[1, 2] == [1, 2]; // false because it compares by reference not by value
+[1, 2].toString() == [1, 2].toString(); // true because we convert them into string before comparing
+
+
+```
 
 * NaN
 
@@ -383,6 +394,7 @@ NaN === NaN // false
 42 == NaN // false
 false === NaN // false
 true == NaN // false
+NaN !== NaN
 NaN !== NaN // false
 Number.isNaN(NaN); // true
 Number.isNaN("abc"); // false
@@ -398,30 +410,10 @@ Number.isNaN(''); // false
 Number.isNaN([]); // false
 Number.isNaN({}); // false
 Number.isNaN(/a/g); // false
-{a:1} + {b:2} // NaN
-null + undefined // NaN
 ```
 
 NaN is never equal to any other value and to it self NaN it will return false  
 **loose equal and strictly equal  treats NaN as unequal to every other value**
-
-* Objects/Array comparison
-
-```js
-[]+[]=="" // true
-[]*1 === 0// true * operator convert [] to primitive "" * 
-[1]===[]+1 // false because []+1 results in "1", but it's a string
-console.log({} + []); // "[object Object]"
-[] == "" // true [] coerce to ""
-// ({}) == "[object object]" // false
-{} + [] //  0  {} standalone block  than (+ []) is a expression with + [] coerce to 0
-[] + {} // "[object Object]" //true [] array are coerce to "" and thus object converted to string "[object Object]"
-[5] + [6] === "56" // true // converted to ""
-[1, 2] == [1, 2]; // false because it compares by reference not by value
-[1, 2].toString() == [1, 2].toString(); // true because we convert them into string before comparing
-
-
-```
 
 ```js
   let a = []
@@ -435,14 +427,17 @@ console.log({} + []); // "[object Object]"
 ***
 
 ```js
-[undefined]===[undefined] //false 
+[undefined]===[undefined] //true
 [null]===[] //false
 []==[] //false
 [] === [] //false
+[] !=[] //true
 [] !== [] // true
 
 {}==={} //false
-
+null === null //true
+NaN === NaN //false
+undefined === undefined //true
 NaN **0 // 1
 NaN** NaN // NaN
 Infinity - Infinity // NaN
@@ -451,12 +446,16 @@ Infinity - Infinity // NaN
 ' '===' '  // true
 '' == 0 // false
 '' == ''// true
-
+//TODO:
+{} + [] === 0
+{} + [] == 0
+[] + {} == 0
+[] + {} === 0
 false == 0// true
 "0" == false // true
-false == [] // true
+false == []
 "" == [] // true
-0 == [] // true
+0 == []
 2 == [2] // true
 "" == [null] // true
 0 == "\n" // true
@@ -501,9 +500,9 @@ initially a is null which is falsy value
 <!-- Todo -->
 ```js
 
-// (function() {
-//     return (function(){}) === (function(){});
-// })();
+(function() {
+    return (function(){}) === (function(){});
+})();
 ```
 
 ### Implicit Type Coercion
@@ -1086,22 +1085,6 @@ output is
 ```
 
 ***
-
-### spread operator
-
-```js
-
-const value = { number: 10 };
-
-const multiply = (x = { ...value }) => {
-  console.log((x.number *= 2));
-};
-
-multiply();
-multiply();
-multiply(value);
-multiply(value);
-```
 
 Javascript is not yet done......  
  continue...  
