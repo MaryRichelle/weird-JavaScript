@@ -121,12 +121,22 @@ The typeof operator returns "undefined" even for “undeclared” ( “not defin
 ```js
 9999999999999999 // ===>10000000000000000
 ```
+***
+``js
+const a = 5.678;
+const b = a.toFixed(2)
+typeof a // "number"
+typeof b // "string"  (that's weird 🙄)
 
+```
+
+***
+   
 ```js
 Infinity - Infinity // NaN
 
 ```
-
+***
 ```js  
 const num = () =>{
 
@@ -152,8 +162,8 @@ why its weird 😵?
 ***
 <!-- Todo -->
 ```js
-0.5+0.1 === true // true 
-0.2+0.1 === true // false 
+0.5+0.1 === 0.6 // true
+0.2+0.1 === 0.3 // false  
 
 ```
 
