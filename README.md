@@ -3,27 +3,27 @@
 ## When you're convinced you understand  it, but it still finds new ways to surprise you and force you to say  *that's weird 🙄*
 
 ```js
-$=_=>`$=${$};$()`;$()// '$=_=>`$=${$};$()`;$()' that's weird 🙄
-($=_=>`$=${$};$()`)()// '$=_=>`$=${$};$()`;$()' 
+$=_=>`$=${$};$()`;$()  // '$=_=>`$=${$};$()`;$()' that's weird 🙄
+($=_=>`$=${$};$()`)()  // '$=_=>`$=${$};$()`;$()' 
 typeof '$=_=>`$=${$};$()`;$()' // 'string' 
 
 ```
 
 lets break it down
 
-* $ ==> variable called $ (but not allowed in 'strict mode without *let* ,*const* or *var*)
+* $ ==> variable declaration ***\$*** (but not allowed in 'strict mode without *let* ,*const* or *var*)
 * = ===> assignment operator to assign a left hand side(aka target) a value
 * _=> ===>arrow function with no parameters (valid in js)
 * `` ===> template literals  string inside  
-* *${$}* ===> calling $ variable which function it self  
-* $(): ===> lastly calling function with $()  
+* *\${\$}* ===> calling $ variable (which function it self) in side template literals  
+* \$(): ===> lastly calling(invoking)  \$ function like this \$()  
 **NOTE** dont confuse it with recursion though function is calling itself
 
 ***
 The most lovely one ⬇️ baNaNa
 
 ```js
-"b" + "a" + +"a" + "a"; // -> 'baNaNa'
+"B" + "a" + +"a" + "a"; // -> 'BaNaNa'
 
 ```
 
@@ -34,6 +34,7 @@ unary plus operator converts its operand to a number
 ***
 
 ```js
+1+2+3+4+5+6+7  // 28
 1+2+"3"+4+"5"+6+ +7; // -> '334567' //string value type
 "1"+2+"3"+4+"5"+6+ +7 // '1234567' //string value type
 
@@ -48,14 +49,15 @@ unary plus operator converts its operand to a number
 !!"false" == !!false;// true
 ```
 
-break it down
+break it down  
 !!"false"
-1: the unary ! negate operator explicitly coerces a value to a boolean. Boolean("false"); // true
+1: the unary ! negate operator explicitly coerces a value to a boolean.
+ Boolean("false"); // true
 
-2: !"false" which is false  because "false" is a string and  a truthy value but not a boolean *false* and
+2: !"false" which is false  because "false" is a string and  a truthy value (but not a boolean *false*) and
 *!(truthy value)* is false
 3: !false ===> true
-4: true === true // true  
+4: thus true === true // true  
 
 ***
 
@@ -66,15 +68,25 @@ console.log(amount)
 
 why its weird 😵
 
-* console.log(......) command has to implicitly coerce the *number 42* value to a *string* value type  to print it out
+* console.log(......) command has to implicitly coerce the *number 42* value to a *string* value type  to print it 42
 
 * javascript work on the right side of = *assignment operator* and then assign that value to left hand side
 
 ***
 
 ```js
-const o = Object.create(null)
+const objWithNoPrototype = Object.create(null)
+console.log(o)
+ // {}
+No properties
 ```
+
+* Object.create(null) creates a new object with null as its prototype
+* so when we try to access any property, it will be undefined
+because this object dont have properties and prototypes
+* only object tht dont have prototype
+
+***
 
 ```js
 b *2
@@ -96,16 +108,23 @@ even null is primitive value in but type of null is object
 ***
 
 ```js
+console.log(z) // ReferenceError: z is not defined
 typeof z; // "undefined"
 ```
 
-The typeof operator returns "undefined" even for “undeclared” (or “not defined”) variables. (that's weird 🙄)
+The typeof operator returns "undefined" even for “undeclared” ( “not defined”) variables. (that's weird 🙄)
 ***
+
 
 ## Numbers / Floating Points
 
 ```js
 9999999999999999 // ===>10000000000000000
+```
+
+```js
+Infinity - Infinity // NaN
+
 ```
 
 ```js  
@@ -133,15 +152,15 @@ why its weird 😵?
 ***
 <!-- Todo -->
 ```js
-0.5+0.1 === true
-0.2+0.1 === true
+0.5+0.1 === true // true 
+0.2+0.1 === true // false 
 
 ```
 
 ***
 
 ```js
-typeof 42.0 // number ===> there is only 6 type of values in js number is one of them 
+typeof 42.0 // number ===> there is only 7 type of values in js number is one of them 
 ```
 
 ***
@@ -285,7 +304,7 @@ why its weird 😵?
 })();
 ```
 
-## logical
+## logical not
 
 ```js
 !!null; // false ===> null falsy value ===> !false // true 
@@ -293,12 +312,14 @@ why its weird 😵?
 !!1; // 1 is truthy 
 ```
 
-***
 !!null; // false
+starting from left side
 
 * ===> null falsy value
 * ===> !false // true
 * ===> !true // false
+
+***
 
 ## logical && and ||
 
@@ -329,6 +350,9 @@ b && c // null
 c || a // 22
 ```
 
+value of a is 22 truthy engine proceed and check for the vau
+***
+
 ```js
 const array = [1, 2, 3];
 let result = 0;
@@ -347,6 +371,22 @@ console.log(result)
 
 ""*0 === 0 // true 
 "1"* 0 === 0 // true
+
+-0 === +0 // true
++0 !== -0 // true
+' '===' '  // true
+'' == 0 // false
+'' == ''// true
+false == 0// true
+"0" == false // true
+false == [] // true
+"" == [] // true
+0 == [] // true
+2 == [2] // true
+"" == [null] // true
+0 == "\n" // true
+"" == 0// true
+"\t\r \v\f " == "" // true
 ```
 
 * number comparison
@@ -377,6 +417,8 @@ true + 1 === 1 //false
 ```js
 NaN == NaN// false
 NaN === NaN // false
+NaN ** 0 // 1
+NaN ** NaN // NaN
 "1" == NaN // false
 "1" === NaN // false
 5 === NaN // false
@@ -408,6 +450,12 @@ NaN is never equal to any other value and to it self NaN it will return false
 * Objects/Array comparison
 
 ```js
+[undefined]===[undefined] //false 
+[null]===[] //false
+[]==[] //false
+[] === [] //false
+[] !== [] // true
+{}==={} //false
 []+[]=="" // true
 []*1 === 0// true * operator convert [] to primitive "" * 
 [1]===[]+1 // false because []+1 results in "1", but it's a string
@@ -433,39 +481,6 @@ console.log({} + []); // "[object Object]"
 * objects are held by reference both `==` and `===` check  only if the reference match not the content/value so both are false
 
 ***
-
-```js
-[undefined]===[undefined] //false 
-[null]===[] //false
-[]==[] //false
-[] === [] //false
-[] !== [] // true
-
-{}==={} //false
-
-NaN **0 // 1
-NaN** NaN // NaN
-Infinity - Infinity // NaN
--0 === +0 // true
-+0 !== -0 // true
-' '===' '  // true
-'' == 0 // false
-'' == ''// true
-
-false == 0// true
-"0" == false // true
-false == [] // true
-"" == [] // true
-0 == [] // true
-2 == [2] // true
-"" == [null] // true
-0 == "\n" // true
-"" == 0// true
-"\t\r \v\f " == "" // true
-
-
-
-```
 
 ## null
 
