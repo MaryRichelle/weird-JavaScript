@@ -9,18 +9,19 @@ typeof '$=_=>`$=${$};$()`;$()' // 'string'
 
 ```
 
-lets break it down
+Function Prints itself  
+lets break it down  
 
 * $ ==> variable declaration ***\$*** (but not allowed in 'strict mode without *let* ,*const* or *var*)
 * = ===> assignment operator to assign a left hand side(aka target) a value
 * _=> ===>arrow function with no parameters (valid in js)
-* `` ===> template literals  string inside  
-* *\${\$}* ===> calling $ variable (which function it self) in side template literals  
+* \``$=${$};$()`\` ===> template literals  string inside  
+* *\${\$}* ===> calling $ variable (which is function itself) in side template literals  
 * \$(): ===> lastly calling(invoking)  \$ function like this \$()  
-**NOTE** dont confuse it with recursion though function is calling itself
+**NOTE** don't confuse it with recursion though function is calling itself
 
 ***
-The most lovely one ⬇️ baNaNa
+The most lovely one ⬇️ BaNaNa
 
 ```js
 "B" + "a" + +"a" + "a"; // -> 'BaNaNa'
@@ -29,8 +30,8 @@ The most lovely one ⬇️ baNaNa
 
 * string concatenation with + operator and typeof "string"
 * +"a" ===> Number("a")  // NaN
-
 unary plus operator converts its operand to a number
+
 ***
 
 ```js
@@ -50,12 +51,11 @@ unary plus operator converts its operand to a number
 ```
 
 break it down  
-!!"false"
+!!"false"  
 1: the unary ! negate operator explicitly coerces a value to a boolean.
- Boolean("false"); // true
-
+ Boolean("false"); // true  
 2: !"false" which is false  because "false" is a string and  a truthy value (but not a boolean *false*) and
-*!(truthy value)* is false
+*!(truthy value)* is  false
 3: !false ===> true
 4: thus true === true // true  
 
@@ -76,15 +76,15 @@ why its weird 😵
 
 ```js
 const objWithNoPrototype = Object.create(null)
-console.log(o)
+console.log(objWithNoPrototype)
  // {}
 No properties
 ```
 
 * Object.create(null) creates a new object with null as its prototype
 * so when we try to access any property, it will be undefined
-because this object dont have properties and prototypes
-* only object tht dont have prototype
+because this object don't have properties and prototypes
+* only object that don't have prototype
 
 ***
 
@@ -103,7 +103,7 @@ a standalone *expression statement* is not very useful and common as it will not
 
 why its weird 😵?  
 typeof null is "object" (that's weird 🙄)
-even null is primitive value in but type of null is object
+even null is primitive value  but typeof null is object
 
 ***
 
@@ -113,23 +113,68 @@ typeof z; // "undefined"
 ```
 
 The typeof operator returns "undefined" even for “undeclared” ( “not defined”) variables. (that's weird 🙄)
-***
 
+***
 
 ## Numbers / Floating Points
 
 ```js
+0 === -0 // true
+0 > -0 // false
+-0 + "" // 0
+0 + "" === -0 + "" // true
+typeof 42.0 // number ===> there is only 7 type of values in js number is one of them 
+999999999999999 // 999999999999999 ==> double-precision floating-point format 
 9999999999999999 // ===>10000000000000000
+1 === 1.01 // false
+1 === 1.000000000000001 // false 
+1 === 1.0000000000000001// true (that's weird 🙄 😭) 
+0o363 === 0O363; // true (that's weird 🙄 ) they say javascript is case sensitive 😭 this presentation of numbers is octal base system where we can use Capital "O" or small "o" same  goes for other base systems
+013 === 11 // true
+0o13 === 11 //true
+013 === 0o13 === 11 // false
+013 === 0o13 // false
+Infinity - Infinity // NaN
+infinity / infinity // NaN
+Number.isInteger( 42 );     // true
+Number.isInteger( 42.000 ); // true
+Number.isInteger( 42.3 );   // false
 ```
 
 ```js
-Infinity - Infinity // NaN
-
+42.toFixed(3) // SyntaxError here . is property accessor
+42 .toFixed(3) // "42.000" with space 
+42..toFixed(3) // "42.000"
+console.log(1..toString() === "1");// true (that's weird 🙄)
 ```
+
+why its weird 😵?  
+
+* floating point 1.0
+* first . is for floating point 1.0  
+* second . for property accessor .toString()/.toFixed(3)
+
+***
+
+```js
+0.5+0.1 === 0.6 // true
+0.2+0.1 === 0.3 // false  
+```
+
+ the representations for 0.1 and 0.2 in binary floating point are not exact, so when they are added, the result is not exactly 0.3. It’s really close, 0.30000000000000004
+***
+
+```js
+const aFloatingPoint = 5.99;
+const floatingToFixed = aFloatingPoint.toFixed(2)
+console.log(typeof aFloatingPoint) // "number" 
+console.log(typeof floatingToFixed) // "string" 
+```
+
+***
 
 ```js  
 const num = () =>{
-
 return 9;
 };
 
@@ -137,32 +182,6 @@ console.log(num() < 10); // true
 ```
 
 num function returns 9 which is less than 10  
-***
-
-```js
-console.log(1..toString() === "1");// true (that's weird 🙄)
-```
-
-why its weird 😵?  
-
-* floating point 1.0
-* .toString()
-* first . is for floating point 1.0  
-
-***
-<!-- Todo -->
-```js
-0.5+0.1 === true // true 
-0.2+0.1 === true // false 
-
-```
-
-***
-
-```js
-typeof 42.0 // number ===> there is only 7 type of values in js number is one of them 
-```
-
 ***
 
 ```js
@@ -187,7 +206,7 @@ fun(5, 3, "wowwwwww", "this is so cool") // '3wowwwwww' string concatenation
 
 ```js
 
-console.log(-4 + 3 + "8") // -1 + "8" === 18 
+console.log(-4 + 3 + "8") // 18 -1 + "8" === 18 - have higher precedence
 console.log("A" - 1); // NaN
 console.log(2 + "-2" + "2"); // 2-22
 console.log("Hello" - "World" + 78); //NaN ==>  "Hello" - "World" (trying to subtract strings) + 78 NaN
@@ -211,15 +230,13 @@ true - true // 0
 
 ```js
 let x = 9;
-console.log(x)
 let y = x++; // y= 9 x= 10 (that's weird 🙄) postfix increment operator
 console.log({x}) // 10
 console.log({y}) // 9
 let z = ++x// 11
 console.log({x}) // 11
 console.log({z}) // 11
-console.log(z *  y) 
-; // 11* 9 (that's weird 🙄) prefix increment operator
+console.log(z * y) ; // 11* 9 (that's weird 🙄) prefix increment operator
 ```
 
 why its weird 😵?  
@@ -244,12 +261,13 @@ console.log(result);
 ***
 
 ```js
-console.log(4 + (5 - - 4) - - 5)// 18 ==> () grouping have hight precedence ⬇️
+console.log(4 + (5 - - 4) - - 5)// 18 
 ```
 
-1:(5 - - 4) => 5 +4 => 9  
+ // Operator precedence
+1:(5 - - 4) => 5 +4 => 9 () grouping have hight precedence ⬇️
 2: 4 + 9 => 13  
-3: 13 - - 5 => 13 + 5 => 18 // Operator precedence  
+3: 13 - - 5 => 13 + 5 => 18  
 ***
 
 ```js
@@ -267,7 +285,8 @@ because of + operator array are coerced to strings "10" , "10,10" (that's weird 
 ```js
 let x=10 ; 
 let y='hello';
-console.log(Number('5'+x));//  output : 510 (that's weird 🙄)
+let z = Number('5'+x) 
+console.log(z , typeof z]);//  output : 510 "number"(that's weird 🙄)
 console.log(`The result ${y} and`+ false); // 'The result hello andfalse'
 ```
 
@@ -288,8 +307,8 @@ display();
 ```
 
 why its weird 😵?  
- string concatenation because of +  and Operator precedence
- 1: ()
+ because + have left to right Associativity  string concatenation and
+ 1: () grouping Operator precedence
  2: + operator
 
 ***
@@ -340,6 +359,15 @@ false || false; // false ===> if the first  test is false prints the value of 2n
 ***
 
 ```js
+console.log("555" === 555 || 555 === 555); // true
+```
+
+```"55" === 55``` is false  
+```555 === 555``` is true
+```false || true``` with || operator is true the value of second operand
+***
+
+```js
 var a = 22
 var b = "Mary"
 var c = null
@@ -350,7 +378,11 @@ b && c // null
 c || a // 22
 ```
 
-value of a is 22 truthy engine proceed and check for the vau
+`a && b` if the test is true, the && expression results in the value of the second operand (b).  
+`a || b` if the test is true, the || expression results in
+the value of the first operand  
+`b && c` b is true nd javascript prints the value of c which is null  
+`c || a` c is falsy so it will print the value of second operand which is a(22)
 ***
 
 ```js
@@ -447,6 +479,11 @@ null + undefined // NaN
 NaN is never equal to any other value and to it self NaN it will return false  
 **loose equal and strictly equal  treats NaN as unequal to every other value**
 
+```js
+var a = 2 / "foo";      // NaN 
+typeof a === "number";  // true
+```
+
 * Objects/Array comparison
 
 ```js
@@ -481,6 +518,21 @@ console.log({} + []); // "[object Object]"
 * objects are held by reference both `==` and `===` check  only if the reference match not the content/value so both are false
 
 ***
+
+## undefined'
+
+in non-strict mode 👇
+
+```js
+let undefined = 5
+console.log(undefined) // 5
+// in strict mode Identifier 'undefined' has already been declared
+function foo(){
+var undefined = 2;
+console.log(undefined)}
+foo(0) // 2
+let null = 5 //  Uncaught SyntaxError: Unexpected token 'null'
+```
 
 ## null
 
@@ -640,6 +692,22 @@ var x = 43;
 ```
 
 ## Array and Array Methods
+
+```js
+function foo(x) {
+x.push( 4 );
+x; // [1,2,3,4]
+x.length//4 
+// later
+x.length = 0; // empty existing array in-place
+x.push( 4, 5, 6, 7 );
+x; // [4,5,6,7]
+}
+var a = [1,2,3];
+a// [1,2,3];
+foo( a );
+a; // [4,5,6,7] not [1,2,3,4]
+```
 
 ```js
 const arr = [1, 2, 3];
@@ -1064,6 +1132,18 @@ output is
 1 ===> runs after 3 seconds  
 ***
 
+```js
+button.addEventListener("click",()=>{
+Promise.resolve().then(()=>console.log("promise"))
+console.log("eventListener")
+})
+```
+
+1: "eventListener"  
+2: "promise"
+
+***
+
 ## events Capturing, targeting, bubbling
 
 ```html
@@ -1077,6 +1157,19 @@ output is
 <!-- event.stopPropagation -->
 ```
 
+button
+second div  
+first div
+When you click a button (or perform any other event-triggering action) in a web page, the browser follows the event propagation phases. The click event goes through the capturing phase, then the target phase (where the actual click occurred), and finally, the bubbling phase.
+
+During the bubbling phase, event listeners attached to the elements involved in the event (including the target and its ancestors) have the opportunity to respond to the event. This is where you can capture the response of the click event by attaching event listeners to relevant elements.
+| Capturing    | Targeting       | bubbling   |
+| ---------    |----------       |----------  |
+|⬇️first div  | ➡️button *Click!* |⬆️ button |
+|⬇️second div |                  |⬆️ second div|
+|⬇️button     |                  |⬆️ first div |  
+
+`Notice the arrows`
 ***
 
 ```js
