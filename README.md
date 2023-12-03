@@ -1,5 +1,7 @@
 # Weird 🙄 behavior of Coolest JavaScript
 
+***The trickier it gets, the more interesting  it becomes, and the more I love it.***
+
 ## When you're convinced you understand  it, but it still finds new ways to surprise you and force you to say  *that's weird 🙄*
 
 ```js
@@ -1214,3 +1216,18 @@ multiply(value);
 Javascript is not yet done......  
  continue...  
  (that's weird 🙄)
+ ***
+
+### Since you are here and if you find
+
+* wrong explanation
+* wrong term used
+* typo
+* things are not clear or need more explanation   
+Please open a [Issue](https://github.com/MaryRichelle/weird-JavaScript/issues)   
+or lets open a [Discussion](https://github.com/MaryRichelle/weird-JavaScript/issues)   
+I would love to learn something from you
+
+### if you find it helpful don't forget to ⭐ the repo and to contribute in it
+
+Thanks 😁
