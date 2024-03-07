@@ -655,7 +655,7 @@ console.log(x); // undefined
 var x = 5;
  ```
 
-* variable declaration and function declaration(with function keyword) are hoisted
+* variable declaration (with var keyword)and function declaration(with function keyword) are hoisted
  in this snippet of code because of hoisting ```var x``` (variable declaration ) is taken at the top of the scope where its undefine because its value is not initialized yet and we initialize the value with initializer =
 
 ***
@@ -1241,9 +1241,9 @@ Javascript is not yet done......
 * wrong explanation
 * wrong term used
 * typo
-* things are not clear or need more explanation
-Please open a [Issue](https://github.com/MaryRichelle/weird-JavaScript/issues)
-or lets open a [Discussion](https://github.com/MaryRichelle/weird-JavaScript/issues)
+* things are not clear or need more explanation   
+Please open a [Issue](https://github.com/MaryRichelle/weird-JavaScript/issues)   
+or lets open a [Discussion](https://github.com/MaryRichelle/weird-JavaScript/issues)   
 
 ### if you find it helpful don't forget to ⭐ the repo
 
