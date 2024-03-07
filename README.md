@@ -57,9 +57,9 @@ break it down
 1: the unary ! negate operator explicitly coerces a value to a boolean.
  Boolean("false"); // true  
 2: !"false" which is false  because "false" is a string and  a truthy value (but not a boolean *false*) and
-*!(truthy value)* is  false
-3: !false ===> true
-4: thus true === true // true  
+*!(truthy value)* is  false  
+3: !false ===> true  
+4: thus true === true // true
 
 ***
 
@@ -71,8 +71,6 @@ console.log(amount)
 why its weird 😵
 
 * console.log(......) command has to implicitly coerce the *number 42* value to a *string* value type  to print it 42
-
-* javascript work on the right side of = *assignment operator* and then assign that value to left hand side
 
 ***
 
@@ -204,7 +202,10 @@ fun(5, 3, "wowwwwww", "this is so cool") // '3wowwwwww' string concatenation
 
 ***
 
-## Operators / Operator Precedence
+## [Operators / Operator Precedence / associativity](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence#table)
+
+* javascript work on the right side of = *assignment operator* and then assign that value to left hand side(technically not accurate)  
+but the thing under the hood is this is because of the assignment operator associativity this binary operator have  right to left associativity.
 
 ```js
 
@@ -212,17 +213,18 @@ console.log(-4 + 3 + "8") // 18 -1 + "8" === 18 - have higher precedence
 console.log("A" - 1); // NaN
 console.log(2 + "-2" + "2"); // 2-22
 console.log("Hello" - "World" + 78); //NaN ==>  "Hello" - "World" (trying to subtract strings) + 78 NaN
-console.log("Hello"+ "78"); "Hello78"
-console.log(5 + "5"); // "55"  
-console.log(5 - "5"); // 0 
-console.log("5" * "5"); // 25
-console.log("5" / "5"); // 1
-console.log(5 + +"5") // 10
-console.log("5" - - "5"); // 10
+console.log("Hello" + "78"); "Hello78"
+console.log(5 + "5"); // "55"  + operator number is coerced to string 
+console.log(5 - "5"); // 0 ==> - operator string coerced to number 
+console.log("5" * "5"); // 25 ==> * operator string coerced to number 
+console.log("5" / "5"); // 1 = / operator string coerced to number 
+console.log(5 + +"5") // 10 ==> unary plus have higher Precedence than addition operator so its grouped 1st {5 + (+"5")} and unary plus operator coerce string to number thank addition operator left to right associativity add them together
+console.log("5" - - "5"); // 10 unary minus (-"5") ==> 5 + 5
 Math.min()// Infinity
 Math.max()// -Infinity
-true + true + true// 3 
-true - true // 0 
+!typeof "name" === "object" // false ==> !(typeof "name") === "object" ! operator have higher precedence than === than (!"string") negate truthy value 'string" to false and false !== "object" so the out put is false 
+true + true + true// 3 ==> because of + operator true becomes 1 
+true - true // 0  ==> 1 - 1 = 0
 //TODO 👇
 (!+[]+[]+![]) // 'truefalse' TODO
 (!+[]+[]+![]).length // 9
@@ -364,9 +366,9 @@ false || false; // false ===> if the first  test is false prints the value of 2n
 console.log("555" === 555 || 555 === 555); // true
 ```
 
-```"55" === 55``` is false  
+```"555" === 555``` is false  
 ```555 === 555``` is true
-```false || true``` with || operator is true the value of second operand
+```false || true``` with || operator when the fist value is false print the value of second operand in our case is "true"
 ***
 
 ```js
@@ -396,6 +398,21 @@ result += +value; // 3 ==> append operator add 1 to its previous index as its it
 }
 console.log(result)
 ```
+
+```js
+function returnStr(){
+return console.log("hello world") 
+}
+function returnTrue(){
+return console.log(true)
+}
+console.log(returnStr() && console.log(true)) // "hello world" "undefined"
+```
+
+console.log(returnStr() && console.log(true)) // "hello world" "undefined"
+`returnStr()` first function is called and which return and prints "hello world" as the out of console.log() but the function return undefined and undefined is a falsy value so && operator stops here and prints the value of 1st operand which is undefined
+
+***
 
 ## == and === operators
 
@@ -1146,7 +1163,7 @@ console.log("eventListener")
 
 ***
 
-## events Capturing, targeting, bubbling
+## event Delegation
 
 ```html
 <div onclick="console.log('first div')">
@@ -1165,6 +1182,7 @@ first div
 When you click a button (or perform any other event-triggering action) in a web page, the browser follows the event propagation phases. The click event goes through the capturing phase, then the target phase (where the actual click occurred), and finally, the bubbling phase.
 
 During the bubbling phase, event listeners attached to the elements involved in the event (including the target and its ancestors) have the opportunity to respond to the event. This is where you can capture the response of the click event by attaching event listeners to relevant elements.
+technical term of this behavior is called event delegation
 | Capturing    | Targeting       | bubbling   |
 | ---------    |----------       |----------  |
 |⬇️first div  | ➡️button *Click!* |⬆️ button |
@@ -1223,11 +1241,10 @@ Javascript is not yet done......
 * wrong explanation
 * wrong term used
 * typo
-* things are not clear or need more explanation   
-Please open a [Issue](https://github.com/MaryRichelle/weird-JavaScript/issues)   
-or lets open a [Discussion](https://github.com/MaryRichelle/weird-JavaScript/issues)   
-I would love to learn something from you
+* things are not clear or need more explanation
+Please open a [Issue](https://github.com/MaryRichelle/weird-JavaScript/issues)
+or lets open a [Discussion](https://github.com/MaryRichelle/weird-JavaScript/issues)
 
-### if you find it helpful don't forget to ⭐ the repo and to contribute in it
+### if you find it helpful don't forget to ⭐ the repo
 
 Thanks 😁
