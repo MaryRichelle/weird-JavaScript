@@ -136,6 +136,7 @@ typeof 42.0 // number ===> there is only 7 type of values in js number is one of
 013 === 0o13 // false
 Infinity - Infinity // NaN
 infinity / infinity // NaN
+Infinity * 0 // NaN
 Number.isInteger( 42 );     // true
 Number.isInteger( 42.000 ); // true
 Number.isInteger( 42.3 );   // false
